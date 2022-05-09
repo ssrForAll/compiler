@@ -1,0 +1,41 @@
+// `include-parent` is equal to true by default. But I am doing this for example. It means that it will include the parent elements
+// The parent element designed for all is found in base.sfa. you can also set a custom parent via parent="admin_parent.sfa"
+
+<template include-parent=true>
+  <div class="w-full">
+    <!-- All of the b-if statements are only included if they meet the required permission.  The components are pulled and included in the response.  -->
+    <SubNavBar v-model="page">
+      <LinkNavItem b-if="user.permissions.admin || user.permissions.user_manager" href="/admin/users" icon="user" name="Users" />
+      <LinkNavItem b-if="user.permissions.admin || user.permissions.repository_manager" href="/admin/storages" icon="box" name="Storages" />
+    </SubNavBar>
+        <!-- All of the b-if statements are only included if they meet the required permission.  The components are pulled and included in the response.  -->
+        <!-- The f-if will only render if the frontend condition is met  -->
+
+    <Storages b-if="user.permissions.admin || user.permissions.user_manager" class="mt-2 md:mt-0" f-if="page == 'storages'" />
+    <Users b-if="user.permissions.admin || user.permissions.repository_manager" class="mt-2 md:mt-0" f-if="page == 'users'" />
+  </div>
+</template>
+
+<script lang="ts">
+import Storages from "@/components/Storages.sfa";
+import Users from "@/components/Users.sfa";
+import { routeUtil } from "sfa-router";
+import SubNavBar from "@/components/common/nav/SubNavBar.sfa";
+import LinkNavItem from "../../components/common/nav/LinkNavItem.sfa";
+export default defineComponent({
+  components: {
+    Storages,
+    Repositories,
+    Users,
+    UpdateUser,
+    Me,
+    SubNavBar,
+    LinkNavItem,
+  },
+  initialize(){
+   // Gets current route. Split into an array. Gets the 2nd index it will equal a string or undefined
+   let page =  routeUtil.getCurrentPage()[1];
+   return {page};
+  }
+});
+</script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="/icon.png" rel="icon" />
+    <link href="/icon-64.png" rel="icon" sizes="64x64" />
+    <link href="/icon-128.png" rel="icon" sizes="128x128" />
+
+    <!-- Base Tags -->
+    <title>{{title}}</title>
+    <meta property="description" content="{{description}}" />
+    <base href="{{base_url}}" target="_blank" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:image" content="{{base_url}}/icon-128.png" />
+    <meta property="og:url" content="{{base_url}}" />
+    <meta property="og:type" content="website" />
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="{{title}}" />
+    <meta property="twitter:description" content="{{description}}" />
+    <script>
+      // A public variable for the app URL.
+      const appURL = "{{base_url}}";
+    </script>
+
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script type="module" crossorigin src="/assets/admin.js"></script>
+    <link rel="stylesheet" href="/assets/admin.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Generated from   <NavBar c-render />-->
+      <div id="(object_ID)" /></div>
+      <!-- SubNavBar-->
+
+      <div id="(object_ID)">
+        <!--       <LinkNavItem b-if="user.permissions.admin || user.permissions.user_manager" href="/admin/users" icon="user" name="Users" />-->
+
+        {{#if user.permissions.admin || user.permissions.user_manager}}
+        <div id="(object_ID)"></div>
+        {{/if}}
+        <!--       <LinkNavItem b-if="user.permissions.admin || user.permissions.repository_manager" href="/admin/storages" icon="box" name="Storages" />-->
+
+        {{#if user.permissions.admin || user.permissions.repository_manager}}
+        <div id="(object_ID)"></div>
+        {{/if}}
+      </div>
+      <!--     <Storages b-if="user.permissions.admin || user.permissions.user_manager" class="mt-2 md:mt-0" f-if="page == 'storages'" />-->
+
+      {{#if user.permissions.admin || user.permissions.user_manager}}
+      <div id="(object_ID)"></div>
+      {{/if}}
+      <!--<Users b-if="user.permissions.admin || user.permissions.repository_manager" class="mt-2 md:mt-0" f-if="page == 'users'" />-->
+      {{#if user.permissions.admin || user.permissions.repository_manager}}
+      <div id="(object_ID)"></div>
+      {{/if}}
+    </div>
+  </body>
+</html>
